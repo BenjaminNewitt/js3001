@@ -58,7 +58,10 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keydown', function(e) {
+  const keys = document.querySelectorAll('.key'); //gives node list of all elements with class key
+    
+  function playSound(e)
+  {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //select the tag
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`) //select the class
   if(!audio)
@@ -69,7 +72,7 @@
   audio.play();
   key.classList.add('playing'); //gives css styling
   }
-  );
+  
 
 function removeTransition(e)
 {
@@ -79,9 +82,10 @@ function removeTransition(e)
   }
   this.classList.remove('playing');//removes the class list from e (the key in the forEach)
 }
-
-  const keys = document.querySelectorAll('.key'); //gives node list of all elements with class key
   keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //when the transition is over, run function removeTransition
+ 
+  window.addEventListener('keydown', playSound);
+
 </script>
 
 
