@@ -71,7 +71,17 @@
   }
   );
 
-  const keys = document.querySelectorAll('.key');
+function removeTransition(e)
+{
+  if(e.propertyName !== 'transform')
+  {
+    return; //only one transitionend is needed, 'transform' is the one selected
+  }
+  this.classList.remove('playing');//removes the class list from e (the key in the forEach)
+}
+
+  const keys = document.querySelectorAll('.key'); //gives node list of all elements with class key
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //when the transition is over, run function removeTransition
 </script>
 
 
