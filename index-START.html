@@ -59,15 +59,19 @@
 
 <script>
   window.addEventListener('keydown', function(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //select the tag
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`) //select the class
   if(!audio)
   {
   return; //breaks out of function if no existing audio tag
   }
   audio.currentTime = 0; //allows for multiple key strokes on same key
   audio.play();
+  key.classList.add('playing'); //gives css styling
   }
   );
+
+  const keys = document.querySelectorAll('.key');
 </script>
 
 
